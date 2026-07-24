@@ -63,7 +63,6 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Category updated successfully.',
-            'data' => CategoryResource::make($category),
         ]);
     }
 
@@ -72,7 +71,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+
+        $this->categoryService->delete($category);
 
         return response()->json([
             'message' => 'Category deleted successfully.',

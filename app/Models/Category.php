@@ -11,4 +11,10 @@ class Category extends Model
         'slug',
         'is_active',
     ];
+
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
 }
