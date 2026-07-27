@@ -9,3 +9,7 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class);
 Route::apiResource('menus', App\Http\Controllers\Api\MenuController::class);
+Route::apiResource(
+    'dining-tables',
+    \App\Http\Controllers\Api\DiningTableController::class
+);
