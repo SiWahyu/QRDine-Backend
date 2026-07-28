@@ -9,12 +9,14 @@ use App\Http\Requests\DiningTable\UpdateDiningTableRequest;
 use App\Http\Resources\DiningTableResource;
 use App\Models\DiningTable;
 use App\Services\DiningTableService;
+use App\Services\QrCodeService;
 
 class DiningTableController extends Controller
 {
 
     public function __construct(
         private DiningTableService $diningTableService,
+        private QrCodeService $qrCodeService
     ) {}
 
     /**
@@ -76,5 +78,17 @@ class DiningTableController extends Controller
         return response()->json([
             'message' => 'Dining table deleted successfully.',
         ]);
+    }
+
+    // Show QRCode Table
+    public function showQrCode(DiningTable $diningTable)
+    {
+        return $this->qrCodeService->show($diningTable);
+    }
+
+    // Download QRCode Table
+    public function downloadQrCode(DiningTable $diningTable)
+    {
+        return $this->qrCodeService->download($diningTable);
     }
 }
