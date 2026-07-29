@@ -19,7 +19,7 @@ class DiningTableResource extends JsonResource
             'number' => $this->number,
             'token' => $this->token,
             'qr_url' => config('app.frontend_url')
-                . '/token/'
+                . '/table/'
                 . $this->token,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
