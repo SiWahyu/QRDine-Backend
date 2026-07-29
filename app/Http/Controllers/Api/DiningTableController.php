@@ -52,6 +52,13 @@ class DiningTableController extends Controller
         return DiningTableResource::make($diningTable);
     }
 
+    public function showByToken(string $token)
+    {
+
+        $diningTable = $this->diningTableService->showByToken($token);
+        return DiningTableResource::make($diningTable);
+    }
+
     /**
      * Update the specified resource in storage.
      */

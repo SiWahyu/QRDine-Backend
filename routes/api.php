@@ -15,5 +15,6 @@ Route::apiResource(
 );
 Route::get("/dining-tables/{diningTable}/qr", [\App\Http\Controllers\Api\DiningTableController::class, 'showQRCode']);
 Route::get("/dining-tables/{diningTable}/qr/download", [\App\Http\Controllers\Api\DiningTableController::class, 'downloadQrCode']);
+Route::get("/tables/{token}", [\App\Http\Controllers\Api\DiningTableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);

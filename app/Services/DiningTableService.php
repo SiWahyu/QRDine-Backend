@@ -16,6 +16,11 @@ class DiningTableService
         ]);
     }
 
+    public function showByToken(string $token): DiningTable
+    {
+        return DiningTable::where('token', $token)->firstOrFail();
+    }
+
     public function update(
         DiningTable $table,
         DiningTableData $data,
