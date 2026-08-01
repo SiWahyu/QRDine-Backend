@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('dining_tables', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('restaurant_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('number', 20)->unique();
             $table->string('token', 32)->unique();
+
+            $table->unique(['restaurant_id', 'number']);
             $table->timestamps();
         });
     }

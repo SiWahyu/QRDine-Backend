@@ -18,3 +18,5 @@ Route::get("/dining-tables/{diningTable}/qr/download", [\App\Http\Controllers\Ap
 Route::get("/tables/{token}", [\App\Http\Controllers\Api\DiningTableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
+
+Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
