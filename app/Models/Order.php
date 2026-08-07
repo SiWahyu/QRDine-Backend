@@ -20,6 +20,7 @@ class Order extends Model
         'payment_status',
         'status',
         'subtotal',
+        'note',
         'tax_amount',
         'service_amount',
         'total',

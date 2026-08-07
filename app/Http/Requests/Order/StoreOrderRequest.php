@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Order;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +23,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table_id' => ['required', 'exists:dining_tables,id'],
+            'table_id' => ['required', 'exists:tables,id'],
 
             'customer_name' => ['required', 'string', 'max:100'],
 
@@ -54,6 +54,12 @@ class StoreOrderRequest extends FormRequest
                 'required',
                 'integer',
                 'min:1'
+            ],
+
+            'items.*.note' => [
+                'nullable',
+                'string',
+                'max:500'
             ],
         ];
     }

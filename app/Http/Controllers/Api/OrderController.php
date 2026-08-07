@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTOs\OrderData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Services\OrderService;
 
@@ -13,9 +14,9 @@ class OrderController extends Controller
         StoreOrderRequest $request,
         OrderService $service
     ) {
-        $order = $service->store(
-            $request->validated()
-        );
+
+        $data = OrderData::fromRequest($request);
+        $order = $service->store($data);
 
         return response()->json([
             'message' => 'Order created successfully.',

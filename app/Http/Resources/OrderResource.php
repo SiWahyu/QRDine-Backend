@@ -41,6 +41,7 @@ class OrderResource extends JsonResource
                     'price' => (float) $item->price,
                     'quantity' => $item->quantity,
                     'subtotal' => (float) $item->subtotal,
+                    'note' => $item->note,
                 ];
             }),
         ];

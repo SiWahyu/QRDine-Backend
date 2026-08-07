@@ -28,6 +28,8 @@ return new class extends Migration
 
             $table->decimal('subtotal', 12, 2);
 
+            $table->text('note')->nullable();
+
             $table->timestamps();
         });
     }
