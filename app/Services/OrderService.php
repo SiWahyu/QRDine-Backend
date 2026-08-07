@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class OrderService
 {
@@ -89,5 +90,23 @@ class OrderService
             now()->format('YmdHis') .
             '-' .
             strtoupper(Str::random(4));
+    }
+
+    public function cancel(Order $order): Order
+    {
+        if ($order->status !== 'pending' || $order->payment_status !== 'pending') {
+            throw new UnprocessableEntityHttpException(
+                'Order cannot be cancelled.'
+            );
+        }
+
+        $order->update([
+            'status' => 'cancelled',
+        ]);
+
+        return $order->fresh()->load([
+            'table',
+            'items.menu',
+        ]);
     }
 }

@@ -20,3 +20,4 @@ Route::get("/tables/{token}", [\App\Http\Controllers\Api\TableController::class,
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
 
 Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
+Route::patch('/orders/{order}/cancel', [\App\Http\Controllers\Api\OrderController::class, 'cancel']);
