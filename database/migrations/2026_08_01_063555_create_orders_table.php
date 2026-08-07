@@ -48,7 +48,6 @@ return new class extends Migration
                 'pending',
                 'confirmed',
                 'preparing',
-                'ready',
                 'completed',
                 'cancelled'
             ])->default('pending');

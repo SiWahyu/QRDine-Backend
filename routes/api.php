@@ -21,3 +21,4 @@ Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class,
 
 Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
 Route::patch('/orders/{order}/cancel', [\App\Http\Controllers\Api\OrderController::class, 'cancel']);
+Route::patch('/orders/{order_number}/pay', [\App\Http\Controllers\Api\OrderController::class, 'pay']);

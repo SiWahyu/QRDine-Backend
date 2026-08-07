@@ -109,4 +109,24 @@ class OrderService
             'items.menu',
         ]);
     }
+
+    public function pay(Order $order): bool
+    {
+        if ($order->status !== 'pending') {
+            throw new UnprocessableEntityHttpException(
+                'Order cannot be paid.'
+            );
+        }
+
+        if ($order->payment_status !== 'pending') {
+            throw new UnprocessableEntityHttpException(
+                'Order payment has already been processed.'
+            );
+        }
+
+        return $order->update([
+            'status' => 'confirmed',
+            'payment_status' => 'paid',
+        ]);
+    }
 }

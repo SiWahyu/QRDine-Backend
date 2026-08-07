@@ -11,13 +11,13 @@ use App\Services\OrderService;
 
 class OrderController extends Controller
 {
-    public function __construct(private readonly  OrderService $orderSerivece) {}
+    public function __construct(private readonly  OrderService $orderService) {}
     public function store(
         StoreOrderRequest $request,
     ) {
 
         $data = OrderData::fromRequest($request);
-        $order = $this->orderSerivece->store($data);
+        $order = $this->orderService->store($data);
 
         return response()->json([
             'message' => 'Order created successfully.',
@@ -27,11 +27,23 @@ class OrderController extends Controller
 
     public function cancel(Order $order)
     {
-        $order = $this->orderSerivece->cancel($order);
+        $order = $this->orderService->cancel($order);
 
         return response()->json([
             'message' => 'Order cancelled successfully.',
             'data' => new OrderResource($order),
+        ]);
+    }
+
+    public function pay(string $orderNumber)
+    {
+        $order = Order::where('order_number', $orderNumber)->firstOrFail();
+
+
+        $order = $this->orderService->pay($order);
+
+        return response()->json([
+            'message' => 'Payment confirmed successfully.',
         ]);
     }
 }
