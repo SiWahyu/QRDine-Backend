@@ -13,8 +13,8 @@ Route::apiResource(
     'tables',
     \App\Http\Controllers\Api\TableController::class
 )->except('show');
-Route::get("/tables/{diningTable}/qr", [\App\Http\Controllers\Api\TableController::class, 'showQRCode']);
-Route::get("/tables/{diningTable}/qr/download", [\App\Http\Controllers\Api\TableController::class, 'downloadQrCode']);
+Route::get("/tables/{table}/qr", [\App\Http\Controllers\Api\TableController::class, 'showQRCode']);
+Route::get("/tables/{table}/qr/download", [\App\Http\Controllers\Api\TableController::class, 'downloadQrCode']);
 Route::get("/tables/{token}", [\App\Http\Controllers\Api\TableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
