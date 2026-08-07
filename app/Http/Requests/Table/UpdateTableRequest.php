@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\DiningTable;
+namespace App\Http\Requests\Table;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateDiningTableRequest extends FormRequest
+class UpdateTableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,8 @@ class UpdateDiningTableRequest extends FormRequest
                 'required',
                 'string',
                 'max:20',
-                Rule::unique('dining_tables')
-                    ->ignore($this->dining_table),
+                Rule::unique('tables')
+                    ->ignore($this->table),
             ],
         ];
     }

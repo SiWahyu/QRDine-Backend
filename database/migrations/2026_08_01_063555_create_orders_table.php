@@ -24,7 +24,7 @@ return new class extends Migration
                 ->nullOnDelete();
 
             $table->foreignId('table_id')
-                ->constrained('dining_tables')
+                ->constrained('tables')
                 ->cascadeOnDelete();
 
             $table->string('customer_name');

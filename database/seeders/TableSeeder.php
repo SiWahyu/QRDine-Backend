@@ -2,18 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\DiningTable;
+use App\Models\Table;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class DiningTableSeeder extends Seeder
+class TableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DiningTable::insert([
+        Table::insert([
             [
                 'restaurant_id' => 1,
                 'number' => 'A-01',

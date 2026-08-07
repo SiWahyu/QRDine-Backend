@@ -21,8 +21,8 @@ class Restaurant extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function diningTables(): HasMany
+    public function tables(): HasMany
     {
-        return $this->hasMany(DiningTable::class);
+        return $this->hasMany(Table::class);
     }
 }

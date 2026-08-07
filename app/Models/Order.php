@@ -32,7 +32,7 @@ class Order extends Model
 
     public function table(): BelongsTo
     {
-        return $this->belongsTo(DiningTable::class, 'table_id');
+        return $this->belongsTo(Table::class, 'table_id');
     }
 
     public function items(): HasMany

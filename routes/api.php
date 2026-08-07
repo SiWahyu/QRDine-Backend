@@ -10,12 +10,12 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class);
 Route::apiResource('menus', App\Http\Controllers\Api\MenuController::class);
 Route::apiResource(
-    'dining-tables',
-    \App\Http\Controllers\Api\DiningTableController::class
-);
-Route::get("/dining-tables/{diningTable}/qr", [\App\Http\Controllers\Api\DiningTableController::class, 'showQRCode']);
-Route::get("/dining-tables/{diningTable}/qr/download", [\App\Http\Controllers\Api\DiningTableController::class, 'downloadQrCode']);
-Route::get("/tables/{token}", [\App\Http\Controllers\Api\DiningTableController::class, 'showByToken']);
+    'tables',
+    \App\Http\Controllers\Api\TableController::class
+)->except('show');
+Route::get("/tables/{diningTable}/qr", [\App\Http\Controllers\Api\TableController::class, 'showQRCode']);
+Route::get("/tables/{diningTable}/qr/download", [\App\Http\Controllers\Api\TableController::class, 'downloadQrCode']);
+Route::get("/tables/{token}", [\App\Http\Controllers\Api\TableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
 

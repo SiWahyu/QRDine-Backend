@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\DiningTable;
+namespace App\Http\Requests\Table;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDiningTableRequest extends FormRequest
+class StoreTableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,13 @@ class StoreDiningTableRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'number' => [
                 'required',
                 'string',
                 'max:20',
-                'unique:dining_tables,number',
+                'unique:tables,number',
             ],
         ];
     }

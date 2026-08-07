@@ -2,22 +2,22 @@
 
 namespace App\Services;
 
-use App\Models\DiningTable;
+use App\Models\Table;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class QrCodeService
 {
-    public function show(DiningTable $diningTable)
+    public function show(Table $table)
     {
 
-        $url = config('app.frontend_url') . '/tables/' . $diningTable->token;
+        $url = config('app.frontend_url') . '/tables/' . $table->token;
 
         return QrCode::format('svg')->size(300)->margin(1)->generate($url);
     }
-    public function download(DiningTable $diningTable)
+    public function download(Table $table)
     {
 
-        $url = config('app.frontend_url') . '/tables/' . $diningTable->token;
+        $url = config('app.frontend_url') . '/tables/' . $table->token;
 
         $svg =  QrCode::format('svg')->size(300)->margin(1)->generate($url);
 
@@ -25,7 +25,7 @@ class QrCodeService
             ->header('Content-Type', 'image/svg+xml')
             ->header(
                 'Content-Disposition',
-                'attachment; filename="table-' . $diningTable->number . '.svg"'
+                'attachment; filename="table-' . $table->number . '.svg"'
             );
     }
 }

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class DiningTable extends Model
+class Table extends Model
 {
     protected $fillable = [
+        'restaurant_id',
         'number',
         'token',
     ];
