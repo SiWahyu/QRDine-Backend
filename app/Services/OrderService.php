@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTOs\OrderData;
+use App\Events\OrderPaid;
 use App\Models\Table;
 use App\Models\Menu;
 use App\Models\Order;
@@ -110,7 +111,7 @@ class OrderService
         ]);
     }
 
-    public function pay(Order $order): bool
+    public function pay(Order $order): Order
     {
         if ($order->status !== 'pending') {
             throw new UnprocessableEntityHttpException(
@@ -124,9 +125,20 @@ class OrderService
             );
         }
 
-        return $order->update([
+        $order->update([
             'status' => 'confirmed',
             'payment_status' => 'paid',
         ]);
+
+        broadcast(new OrderPaid(
+            $order->order_number
+        ));
+
+        return $order->fresh();
+    }
+
+    public function show(string $orderNumber): Order
+    {
+        return Order::where('order_number', $orderNumber)->firstOrFail();
     }
 }

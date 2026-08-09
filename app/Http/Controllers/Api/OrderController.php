@@ -12,6 +12,17 @@ use App\Services\OrderService;
 class OrderController extends Controller
 {
     public function __construct(private readonly  OrderService $orderService) {}
+
+    public function show(string $orderNumber)
+    {
+
+        $order = $this->orderService->show($orderNumber);
+
+        return response()->json([
+            'message' => 'Order fetched successfully.',
+            'data' => new OrderResource($order),
+        ]);
+    }
     public function store(
         StoreOrderRequest $request,
     ) {
@@ -43,7 +54,8 @@ class OrderController extends Controller
         $order = $this->orderService->pay($order);
 
         return response()->json([
-            'message' => 'Payment confirmed successfully.',
+            'message' => 'Order paid successfully.',
+            'data' => $order,
         ]);
     }
 }

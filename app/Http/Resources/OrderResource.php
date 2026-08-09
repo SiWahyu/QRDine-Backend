@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -21,13 +20,16 @@ class OrderResource extends JsonResource
             'customer_name' => $this->customer_name,
 
             'payment_status' => $this->payment_status,
-
+            'payment_method' => $this->payment_method,
             'status' => $this->status,
 
             'subtotal' => (float) $this->subtotal,
             'tax' => (float) $this->tax_amount,
             'service' => (float) $this->service_amount,
             'total' => (float) $this->total,
+
+            'created_at' => $this->created_at?->toISOString(),
+            'updated_at' => $this->updated_at?->toISOString(),
 
             'table' => [
                 'id' => $this->table->id,
