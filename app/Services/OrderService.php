@@ -113,6 +113,16 @@ class OrderService
 
     public function pay(Order $order): Order
     {
+        return $this->markAsPaid($order);
+    }
+
+    public function show(string $orderNumber): Order
+    {
+        return Order::where('order_number', $orderNumber)->firstOrFail();
+    }
+
+    public function markAsPaid(Order $order): Order
+    {
         if ($order->status !== 'pending') {
             throw new UnprocessableEntityHttpException(
                 'Order cannot be paid.'
@@ -135,10 +145,5 @@ class OrderService
         ));
 
         return $order->fresh();
-    }
-
-    public function show(string $orderNumber): Order
-    {
-        return Order::where('order_number', $orderNumber)->firstOrFail();
     }
 }

@@ -23,3 +23,12 @@ Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store
 Route::get('/orders/{order_number}', [\App\Http\Controllers\Api\OrderController::class, 'show']);
 Route::patch('/orders/{order}/cancel', [\App\Http\Controllers\Api\OrderController::class, 'cancel']);
 Route::patch('/orders/{order_number}/pay', [\App\Http\Controllers\Api\OrderController::class, 'pay']);
+
+Route::post(
+    '/payments/{orderNumber}/payment',
+    [\App\Http\Controllers\Api\PaymentController::class, 'createPayment']
+);
+Route::post(
+    '/payments/midtrans/notification',
+    [\App\Http\Controllers\Api\PaymentController::class, 'notification']
+);
