@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTOs\OrderData;
 use App\Events\OrderPaid;
+use App\Jobs\SendOrderReceiptJob;
 use App\Models\Table;
 use App\Models\Menu;
 use App\Models\Order;
@@ -139,6 +140,8 @@ class OrderService
             'status' => 'confirmed',
             'payment_status' => 'paid',
         ]);
+
+        SendOrderReceiptJob::dispatch($order->id);
 
         broadcast(new OrderPaid(
             $order->order_number
