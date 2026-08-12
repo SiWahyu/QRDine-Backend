@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTOs\OrderData;
 use App\Events\OrderPaid;
+use App\Jobs\ExpireCashOrderJob;
 use App\Jobs\SendOrderReceiptJob;
 use App\Models\Table;
 use App\Models\Menu;
@@ -12,13 +13,14 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use function Illuminate\Support\now;
 
 class OrderService
 {
     public function store(OrderData $data): Order
     {
 
-        return DB::transaction(function () use ($data) {
+        $order = DB::transaction(function () use ($data) {
             $table = Table::with('restaurant')
                 ->findOrFail($data->tableId);
 
@@ -84,6 +86,18 @@ class OrderService
                 'items.menu',
             ]);
         });
+
+        if ($order->payment_method === 'cash') {
+            $expiredAt = now()->addMinutes(15);
+
+            $order->update([
+                'payment_expired_at' => $expiredAt,
+            ]);
+
+            ExpireCashOrderJob::dispatch($order)->delay(now()->addMinutes(15));
+        }
+
+        return $order;
     }
 
     private function generateOrderNumber(): string

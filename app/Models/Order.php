@@ -18,6 +18,7 @@ class Order extends Model
         'order_number',
         'payment_method',
         'payment_status',
+        'payment_expired_at',
         'status',
         'subtotal',
         'note',
@@ -45,4 +46,8 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'payment_expired_at' => 'datetime',
+    ];
 }

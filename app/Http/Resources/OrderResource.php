@@ -20,6 +20,7 @@ class OrderResource extends JsonResource
             'customer_name' => $this->customer_name,
 
             'payment_status' => $this->payment_status,
+            'payment_expired_at' => $this->payment_expired_at?->toISOString(),
             'payment_method' => $this->payment_method,
             'status' => $this->status,
 

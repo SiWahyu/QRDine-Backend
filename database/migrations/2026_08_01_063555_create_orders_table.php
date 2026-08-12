@@ -44,6 +44,8 @@ return new class extends Migration
                 'failed'
             ])->default('pending');
 
+            $table->timestamp('payment_expired_at')->nullable();
+
             $table->enum('status', [
                 'pending',
                 'confirmed',
