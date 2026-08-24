@@ -53,3 +53,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/orders', [\App\Http\Controllers\Api\Admin\OrderController::class, 'index']);
 });
+
+Route::prefix('kitchen')->group(
+    function () {
+        Route::get('/orders', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'index']);
+        Route::patch('/orders/{order}/status', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'updateStatus']);
+    }
+);
