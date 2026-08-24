@@ -8,7 +8,7 @@ use App\Http\Requests\Table\StoreTableRequest;
 use App\Http\Requests\Table\UpdateTableRequest;
 use App\Http\Resources\TableResource;
 use App\Models\Table;
-use App\Services\QrCodeService;
+use App\Services\QRCodeService;
 use App\Services\TableService;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class TableController extends Controller
 
     public function __construct(
         private TableService $tableService,
-        private QrCodeService $qrCodeService
+        private QRCodeService $qrCodeService
     ) {}
 
     /**

@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Table;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class QrCodeService
+class QRCodeService
 {
     public function show(Table $table)
     {
