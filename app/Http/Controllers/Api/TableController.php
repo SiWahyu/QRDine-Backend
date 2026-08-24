@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\DTOs\TableData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Table\StoreTableRequest;
 use App\Http\Requests\Table\UpdateTableRequest;
 use App\Http\Resources\TableResource;
 use App\Models\Table;
@@ -31,21 +30,6 @@ class TableController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTableRequest $request)
-    {
-        $data = TableData::fromRequest($request);
-
-        $table = $this->tableService->store($data);
-
-        return response()->json([
-            'message' => 'Table created successfully.',
-            'data' => TableResource::make($table),
-        ], 201);
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Table $table) {}
@@ -57,21 +41,6 @@ class TableController extends Controller
         return TableResource::make($table);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(
-        UpdateTableRequest $request,
-        Table $table,
-    ) {
-        $data = TableData::fromRequest($request);
-
-        $this->tableService->update($table, $data);
-
-        return response()->json([
-            'message' => 'Table updated successfully.',
-        ]);
-    }
 
     /**
      * Remove the specified resource from storage.

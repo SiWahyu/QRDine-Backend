@@ -18,27 +18,37 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Paket Hemat',
                 'slug' => 'paket-hemat',
-                'is_active' => 1
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Makanan',
                 'slug' => 'makanan',
-                'is_active' => 1
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Minuman',
                 'slug' => 'minuman',
-                'is_active' => 1
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Snack',
                 'slug' => 'snack',
-                'is_active' => 1
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Coffee',
                 'slug' => 'coffee',
-                'is_active' => 1
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

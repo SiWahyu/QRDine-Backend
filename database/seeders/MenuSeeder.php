@@ -13,6 +13,7 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
+
         Menu::insert([
             [
                 'category_id' => 1,
@@ -20,8 +21,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'paket-hemat-ayam',
                 'description' => 'Nasi, ayam crispy, sambal, dan es teh.',
                 'price' => 25000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 1,
@@ -29,8 +32,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'paket-hemat-burger',
                 'description' => 'Burger beef, kentang goreng, dan soft drink.',
                 'price' => 32000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 2,
@@ -38,8 +43,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'nasi-goreng-special',
                 'description' => 'Nasi goreng dengan telur dan ayam suwir.',
                 'price' => 28000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 2,
@@ -47,8 +54,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'chicken-katsu',
                 'description' => 'Chicken katsu crispy dengan saus khas.',
                 'price' => 35000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 3,
@@ -56,8 +65,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'es-teh-manis',
                 'description' => 'Es teh manis segar.',
                 'price' => 8000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 3,
@@ -65,8 +76,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'air-mineral',
                 'description' => 'Air mineral botol 600ml.',
                 'price' => 6000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 4,
@@ -74,8 +87,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'french-fries',
                 'description' => 'Kentang goreng renyah.',
                 'price' => 18000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 4,
@@ -83,8 +98,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'onion-rings',
                 'description' => 'Onion rings crispy dengan saus mayo.',
                 'price' => 20000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 5,
@@ -92,8 +109,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'americano',
                 'description' => 'Espresso dengan tambahan air panas.',
                 'price' => 22000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'category_id' => 5,
@@ -101,8 +120,10 @@ class MenuSeeder extends Seeder
                 'slug' => 'cafe-latte',
                 'description' => 'Espresso dengan susu segar.',
                 'price' => 28000,
-                'image' => 'https://picsum.photos/600/600?random=1',
-                'is_available' => true
+                'image' => 'menus/huynh-quyet-YgirePmHPZU-unsplash.jpg',
+                'is_available' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

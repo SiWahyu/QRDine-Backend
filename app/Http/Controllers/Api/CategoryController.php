@@ -17,54 +17,7 @@ class CategoryController extends Controller
         private CategoryService $categoryService,
     ) {}
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $categories = Category::orderBy('name')->paginate(10);
 
-        return CategoryResource::collection($categories);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCategoryRequest $request)
-    {
-
-        $data = CategoryData::fromRequest($request);
-
-        $category = $this->categoryService->store($data);
-
-        return response()->json([
-            'message' => 'Category created successfully',
-            'data' => CategoryResource::make($category),
-        ])->setStatusCode(201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCategoryRequest $request, Category $category)
-    {
-
-        $data = CategoryData::fromRequest($request);
-
-        $this->categoryService->update($category, $data);
-
-        return response()->json([
-            'message' => 'Category updated successfully.',
-        ]);
-    }
 
     /**
      * Remove the specified resource from storage.
