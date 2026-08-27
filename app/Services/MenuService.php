@@ -3,19 +3,11 @@
 namespace App\Services;
 
 use App\Models\Menu;
-use Illuminate\Support\Facades\Storage;
 
 class MenuService
 {
-
-
-
-    public function delete(Menu $menu): bool
+    public function getMenus()
     {
-        if ($menu->image) {
-            Storage::disk('public')->delete($menu->image);
-        }
-
-        return $menu->delete();
+        return Menu::with('category')->get();
     }
 }
