@@ -1,20 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 // customer app route
-Route::apiResource('menus', App\Http\Controllers\Api\MenuController::class)->except('store');
-Route::apiResource(
-    'tables',
-    \App\Http\Controllers\Api\TableController::class
-)->except('show', 'store');
-Route::get("/tables/{table}/qr", [\App\Http\Controllers\Api\TableController::class, 'showQRCode']);
-Route::get("/tables/{table}/qr/download", [\App\Http\Controllers\Api\TableController::class, 'downloadQrCode']);
+Route::get("/menus", [\App\Http\Controllers\Api\MenuController::class, 'index']);
 Route::get("/tables/{token}", [\App\Http\Controllers\Api\TableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
@@ -34,7 +24,7 @@ Route::post(
 );
 
 // admin route
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/categories', [\App\Http\Controllers\Api\Admin\CategoryController::class, 'index']);
     Route::post('/categories', [\App\Http\Controllers\Api\Admin\CategoryController::class, 'store']);
@@ -52,11 +42,21 @@ Route::prefix('admin')->group(function () {
     Route::put('/tables/{table}', [\App\Http\Controllers\Api\Admin\TableController::class, 'update']);
 
     Route::get('/orders', [\App\Http\Controllers\Api\Admin\OrderController::class, 'index']);
+
+    Route::get('/users', [\App\Http\Controllers\Api\Admin\UserController::class, 'index']);
+    Route::post('/users', [\App\Http\Controllers\Api\Admin\UserController::class, 'store']);
+    Route::put('/users/{user}', [\App\Http\Controllers\Api\Admin\UserController::class, 'update']);
+    Route::delete('/users/{user}', [\App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
 });
 
-Route::prefix('kitchen')->group(
+Route::prefix('kitchen')->middleware(['auth:sanctum', 'role:kitchen'])->group(
     function () {
         Route::get('/orders', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'index']);
         Route::patch('/orders/{order}/status', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'updateStatus']);
     }
 );
+
+Route::post('/auth/login', [\App\Http\Controllers\Api\Auth\AuthController::class, 'login']);
+Route::post('/auth/logout', [\App\Http\Controllers\Api\Auth\AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::get("/me", [\App\Http\Controllers\Api\Auth\UserController::class, 'me'])->middleware('auth:sanctum');
