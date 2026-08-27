@@ -49,12 +49,16 @@ Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
     Route::delete('/users/{user}', [\App\Http\Controllers\Api\Admin\UserController::class, 'destroy']);
 });
 
+// kitchen route
 Route::prefix('kitchen')->middleware(['auth:sanctum', 'role:kitchen'])->group(
     function () {
         Route::get('/orders', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'index']);
         Route::patch('/orders/{order}/status', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'updateStatus']);
     }
 );
+
+// order-status route
+Route::get('/orders-status', [\App\Http\Controllers\Api\OrderStatusController::class, 'index']);
 
 Route::post('/auth/login', [\App\Http\Controllers\Api\Auth\AuthController::class, 'login']);
 Route::post('/auth/logout', [\App\Http\Controllers\Api\Auth\AuthController::class, 'logout'])->middleware('auth:sanctum');

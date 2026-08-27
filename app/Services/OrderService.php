@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTOs\OrderData;
+use App\Events\Order\OrderCreated;
 use App\Events\OrderPaid;
 use App\Jobs\ExpireCashOrderJob;
 use App\Jobs\SendOrderReceiptJob;
@@ -160,6 +161,7 @@ class OrderService
         broadcast(new OrderPaid(
             $order->order_number
         ));
+        event(new OrderCreated($order));
 
         return $order->fresh();
     }

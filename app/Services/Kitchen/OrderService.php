@@ -2,6 +2,8 @@
 
 namespace App\Services\Kitchen;
 
+use App\Events\Order\OrderCreated;
+use App\Events\Order\OrderUpdate;
 use App\Models\Order;
 
 class OrderService
@@ -21,6 +23,8 @@ class OrderService
     {
         $order->status = $status;
         $order->save();
+
+        event(new OrderUpdate($order));
         return $order;
     }
 }
