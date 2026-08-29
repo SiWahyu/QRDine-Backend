@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 // customer app route
 Route::get("/menus", [\App\Http\Controllers\Api\MenuController::class, 'index']);
+
+Route::get("/categories", [\App\Http\Controllers\Api\CategoryController::class, 'index']);
+
 Route::get("/tables/{token}", [\App\Http\Controllers\Api\TableController::class, 'showByToken']);
 
 Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class, 'show']);
@@ -12,7 +15,6 @@ Route::get('/restaurant', [App\Http\Controllers\Api\RestaurantController::class,
 Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
 Route::get('/orders/{order_number}', [\App\Http\Controllers\Api\OrderController::class, 'show']);
 Route::patch('/orders/{order}/cancel', [\App\Http\Controllers\Api\OrderController::class, 'cancel']);
-Route::patch('/orders/{order_number}/pay', [\App\Http\Controllers\Api\OrderController::class, 'pay']);
 
 Route::post(
     '/payments/{orderNumber}/payment',
@@ -56,6 +58,16 @@ Route::prefix('kitchen')->middleware(['auth:sanctum', 'role:kitchen'])->group(
         Route::patch('/orders/{order}/status', [\App\Http\Controllers\Api\Kitchen\OrderController::class, 'updateStatus']);
     }
 );
+
+// cashier route
+Route::prefix('cashier')->middleware(['auth:sanctum', 'role:cashier'])->group(
+    function () {
+        Route::get('/orders/{order_number}', [\App\Http\Controllers\Api\Cashier\CheckoutController::class, 'show']);
+        Route::patch('/orders/{order_number}/checkout', [\App\Http\Controllers\Api\Cashier\CheckoutController::class, 'checkout']);
+    }
+
+);
+
 
 // order-status route
 Route::get('/orders-status', [\App\Http\Controllers\Api\OrderStatusController::class, 'index']);

@@ -29,5 +29,13 @@ class UserSeeder extends Seeder
         ]);
 
         $kitchen->assignRole('kitchen');
+
+        $cashier = User::create([
+            'name' => 'budi',
+            'email' => 'budi@gmail.com',
+            'password' => Hash::make('budi')
+        ]);
+
+        $cashier->assignRole('cashier');
     }
 }
